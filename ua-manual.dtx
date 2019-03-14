@@ -1,0 +1,352 @@
+% \iffalse
+%%
+%% File ua-classes.dtx by Marcel Oliver
+%%
+%% Documentation can be obtained by running "latex labels.dtx"
+%%
+%<*dtx>
+\ProvidesFile{ua-manual.dtx}
+%</dtx>
+%<driver>\ProvidesFile{ua-manual.drv}
+%
+%<*driver>
+\documentclass{ltxdoc}
+\begin{document}
+\DocInput{ua-manual.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \title{Document Classes for \\
+%        Writing Theses and Dissertations \\
+%        for Submission at the University of Arizona}
+% \author{Marcel Oliver}
+% \date{1997/05/09}
+% \maketitle
+%
+% \begin{abstract}
+% This package provides a \LaTeXe\ document class named |ua-thesis|
+% for typesetting theses and dissertations in the official format required
+% by the University of Arizona.  
+% Moreover, there is a fully compatible alternative document class
+% |my-thesis| for private copies of the dissertation, and the respective
+% title pages are available as separate packages to work with ``any''
+% document class.  
+% \end{abstract}
+% 
+%
+% \section{User Documentation}
+%
+% \subsection{Introduction}
+%
+% The |ua-thesis| document class is designed to conform with the official
+% requirements of the Graduate College of the University of Arizona.  It is
+% based on the |report| class which comes with the standard \LaTeX\
+% distribution, and all commands are upward compatible with |report|
+% and to a large extent with the |amsbook| class.  In other words, any
+% document which works error free in those two classes should run with
+% |ua-thesis|, too.  To automatically typeset all the required information,
+% a few new commands are defined, which are explained below.
+%
+%
+% \subsection{Classes and Options}
+%
+% The following classes and packages are provided:
+%
+% \begin{description}
+%
+% \item[\texttt{ua-thesis}]
+% The official University of Arizona thesis document class.  The |draft|
+% option is a paper saver---the automatic generation of front matter pages
+% other than the title page will be suppressed, and single spaced printing
+% will be used throughout the document.  The |final| option activates
+% ``double spaced'' layout at the required places and creates the full set
+% of front matter pages.  The default is |draft|.  
+%
+% With the |final| option the spacing of the text is set at 1.5 times 
+% single spacing distance.  This spacing is currently accepted at the 
+% University of Arizona Graduate College and produces a readable document.
+% The options |double| and |triple| are provided if true double or triple
+% spacing is required.  These options, available with both the |draft|
+% and |final| options, will affect the spacing of the text, the 
+% dedication, the abstract, and the special abstract.
+%
+% Note that the draft option is passed through to the underlying |report|
+% class, i.e.\ thick blick rules will indicate the location of overfull
+% |hbox|es.
+%
+% The |ua-thesis| class automatically loads the |amsmath|, |amssymb| and
+% |amsthm| packages which considerably improve the mathematical
+% typesetting capabilities of \LaTeX.  The use of these macros is strongly
+% recommended. 
+%
+% The default type-size in this document class is 12pt and should not be
+% changed.  Subsubsections 
+% produce unnumbered run-in headings which do not appear in the Table of
+% Contents; therefore their use is discouraged.
+%
+% \item[\texttt{my-thesis}]
+% An alternative to |ua-thesis| to produce private copies of your
+% dissertation which don't look so reminiscent of the typewriter age.  It
+% is based on the |pcms-l| document class by the American Mathematical
+% Society, which was designed to typeset monographs for the Park City/IAS
+% Mathematics Series.  It is similar to |amsbook|, but has a less crowded
+% look.
+%
+% \item[\texttt{ua-title}]
+% The official University of Arizona title page as a separate package.
+% Useful if you want to build your own private thesis class, but want to
+% use the official title page.  It redefines the |\maketitle| command and
+% also provides (potentially useless) definitions for all the commands
+% described in the next section.
+%
+% The package is neither guaranteed nor tested to work with any specific
+% document class.  You have to try and see.
+%
+% \item[\texttt{my-title}]
+% The equivalent to |ua-title|, but with the title page of the |my-thesis|
+% class. 
+% 
+% \end{description}
+% The first line in your dissertation file should be
+% \begin{verbatim}
+%   \documentclass{ua-thesis}
+% \end{verbatim}
+% or, for the final printout,
+% \begin{verbatim}
+%   \documentclass[final]{ua-thesis}
+% \end{verbatim}
+% If you change the document class from |ua-thesis| to |my-thesis| or vice
+% versa, the 
+% first \LaTeX\ run might produce error messages because the format of the
+% auxiliary files (|.aux|, |.toc| etc.) is incompatible between the two.
+% Type |s| or |q| to ignore all error messages and run \LaTeX\ a second
+% time, or manually delete all auxiliary  
+% files before changing the document class.
+% 
+%
+% \subsection{Commands for Specifying the Front Matter}
+%
+% As in the standard document classes, the title of your thesis is
+% specified by
+% \begin{verbatim}
+%   \title{This is the Title of my Dissertation \\
+%          and This is the Second Line}
+% \end{verbatim}
+% where line breaks can be forced with |\\| if the automatic line
+% breaking does not give a satisfactory result.  But remember: the Graduate
+% College imposes a maximum of three lines in the title---\LaTeX\ does not
+% check this for you.  An optional argument can be given for reasons of
+% compatibility with the AMS classes, but will be ignored.
+%
+% Your name is specified with
+% \begin{verbatim}
+%   \author{Firstname Lastname}
+% \end{verbatim}
+% Again, an optional argument will be ignored.  Use
+% \begin{verbatim}
+%   \date{1996}
+% \end{verbatim}
+% set the year of your graduation.  If you omit this command, the current
+% day, month and year will be printed, which may be useful for keeping
+% track of different draft versions.
+% The only other command that is required for the final version of every
+% dissertation is 
+% \begin{verbatim}
+%   \director{Firstname Lastname}
+% \end{verbatim}
+% to specify the name of your dissertation advisor.  It will appear on the
+% Special Abstract which is automatically generated.  
+%
+% Now the optional commands. The name of your department is set with
+% \begin{verbatim}
+%   \department{Department of Metaphysics}
+% \end{verbatim}
+% The default is ``Graduate Interdisciplinary Program in Applied
+% Mathematics''. If you are in the ``Department of Metaphysics'', you have
+% to use this command.
+%
+% If you are writing a Masters thesis, you have to explicitly specify the
+% name of your degree.  Use
+% \begin{verbatim}
+%   \degree{Masters of Arts}
+% \end{verbatim}
+% The default is ``Doctor of Philosophy''.  The abbreviation of the
+% degree is needed for the Special Abstract and can be with
+% \begin{verbatim}
+%   \degreeabbrev{M.A.}
+% \end{verbatim}
+% The default is ``Ph.D.''.  Moreover, for Masters theses, the Copyright
+% Page will have an additional part for the approval signature of your
+% advisor.  It will be automatically generated whenever you specify your
+% advisor's title with
+% \begin{verbatim}
+%   \directortitle{Professor of Mathematics}
+% \end{verbatim}
+% The default is empty and \emph{must not be changed for doctoral
+% dissertations}. 
+%
+% If you have to specify a major department
+% different from the department above, use
+% \begin{verbatim}
+%   \major{Agriculture}
+% \end{verbatim}
+% The default is empty.  
+%
+% You can copyright your dissertation or thesis by writing
+% \begin{verbatim}
+%   \copyrightholder{Firstname Lastname Year}
+% \end{verbatim}
+% The default is empty.  If you use this command, the 
+% Copyright Page will automatically change to the required
+% legalese for copyrighted dissertations or theses.
+% 
+%
+% \subsection{Examples for the Root File}
+%
+% For long documents such as theses, it is useful to split the \LaTeX\
+% source code into several files.  The root file is the file that you run
+% \LaTeX\ on.  Subordinate files are included with |\include|.
+%
+% \subsubsection{A Doctoral Dissertation}
+%
+% The example below also shows how to load the |graphics| package, which in
+% particular supports the inclusion of postscript images.  Note that you
+% can specify the |draft| or |final| option for the graphics package
+% separate from the global options of the document class.
+%
+% The |ua-thesis| class is designed to create a |.dvi| file that strictly
+% adheres to the required page margins.   The printer hardware or the
+% driver implementation, however, may have tolerances that cause the image
+% to shift on the page.  This can be corrected by using |\hoffset|
+% and |\voffset|.  The example below works well with the current printers
+% in the Math Department.
+%
+% You don't need to use |\chapter*{Dedication}| for the Dedication if you
+% don't like the heading.  You can simply start a new page with |\newpage|,
+% but then you are completely responsible for the formatting of that page,
+% including the switch to double-spaced printing as is officially required
+% (this can be done, for example, by using |\doublespaced|).
+%
+% \begin{verbatim}
+% \documentclass[draft]{ua-thesis}
+% \usepackage[final]{graphics}
+%
+% \hoffset -2.1mm
+%
+% \director{Advisor's Name}
+% \date{1996}
+%
+% \title{This is a Doctoral Dissertation}
+% \author{Your Name}
+%
+% \begin{document}
+%
+% \maketitle
+%
+% \chapter*{Acknowledgments}
+% Acknowledgments go here.
+%
+% \chapter*{Dedication}
+% Dedicated to the Fundamental Theorem of Calculus.
+%
+% \tableofcontents
+% \listoffigures
+% \listoftables
+%
+% \begin{abstract}
+% This is the abstract. 
+% \end{abstract}
+%
+% \include{chapter1}
+% \include{chapter2}
+% \appendix
+% \include{appendix}
+%
+% \begin{thebibliography}{99}
+% And the bibliography goes here.  
+% \end{thebibliography}
+%
+% \end{document}  
+% \end{verbatim}
+%
+% \subsubsection{A Masters Thesis}
+%
+% This thesis is copyrighted, but does not have Acknowledgments or a
+% Dedication.  It is written by a student in the Department of
+% Mathematics. 
+%
+% \begin{verbatim}
+% \documentclass[final]{ua-thesis}
+%
+% \hoffset -2.1mm
+%
+% \director{Advisor's Name}
+% \directortitle{Professor of Mathematics}
+% \degree{Master of Science}
+% \degreeabbrev{M.S.}
+% \department{Department of Mathematics}
+% \date{1996}
+%
+% \title{This is a Masters Thesis}
+% \author{Your Name}
+% \copyrightholder{Your Name 1996}
+%
+% \begin{document}
+%
+% \maketitle
+% \tableofcontents
+% \listoffigures
+% \listoftables
+%
+% \begin{abstract}
+% This is the abstract. 
+% \end{abstract}
+%
+% \include{chapter1}
+% \include{chapter2}
+% \appendix
+% \include{appendix}
+%
+% \begin{thebibliography}{99}
+% And the bibliography goes here.  
+% \end{thebibliography}
+%
+% \end{document}  
+% \end{verbatim}
+%
+% \subsection{The Files and Further Documentation}
+%
+% Currently, the sources and all documentation are contained in the
+% following three files.
+% \begin{description}
+%
+% \item[\texttt{ua-classes.dtx}]
+% User guide and documented source code.  The document you are reading has
+% been obtained by running |latex ua-classes.dtx|. 
+%
+% \item[\texttt{ua-classes.ins}]
+% The installation file. Running |latex ua-classes.ins| will 
+% generate the class  files |ua-thesis.cls| and  |my-thesis.cls| as well
+% as the title page packages
+% |ua-title.sty| and |my-title.sty| from the universal source file
+% |ua-classes.dtx|.
+%
+% \item[\texttt{ua-example.tex}]
+% An example dissertation generated from the official Manual for Theses and
+% Dissertations by the Graduate College.  The file has been obtained via
+% the web and manually converted into \LaTeX.  It both serves as an example
+% and contains the official formating instructions as of May 1996.  Be sure
+% to check for changes before you submit your dissertation. 
+%
+% \end{description}
+%
+%
+% \subsection{Bugs and Changes}
+%
+% All changes and bug fixes must be done in the file |ua-classes.dtx|,
+% and \emph{not} in the files generated by the docstrip utility.  Moreover,
+% they must be clearly annotated with a date, name and comments explaining
+% each change.
+%
+\endinput
